@@ -1,8 +1,8 @@
 <!doctype html>
 <html amp4ads lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
-  <title>Scrollbound Lightbox Ad</title>
+    <title>Scrollbound Lightbox Ad</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
     <script async src="https://cdn.ampproject.org/amp4ads-v0.js"></script>
     <script async custom-element="amp-animation" src="https://cdn.ampproject.org/v0/amp-animation-0.1.js"></script>
@@ -20,26 +20,26 @@
     The styling designed here is responsive and will work with various ad sizes.
     -->
     <style amp-custom>
-      /* Main element that contains the creative. */
-      .root-container {
+    /* Main element that contains the creative. */
+    .root-container {
         /* background: #42c7f4; */
         background: linear-gradient(to bottom, #ffe950 55%, #42c7f4 45%);
         color: #fff;
         font-family: 'Avenir', sans-serif;
         font-size: 12px;
         overflow: hidden;
-        width: 350px;
+        width: 300px;
         height: 250px;
         position: relative;
         margin: 0 auto;
         display: block;
-      }
+    }
 
-      .confetti-background {
+    .confetti-background {
         display: relative;
-      }
+    }
 
-      .header-logo {
+    .header-logo {
         background: url(https://res.cloudinary.com/dwqb3yhm3/image/upload/v1532985892/Parallax/confetti.png);
         background-size: contain;
         background-repeat: no-repeat;
@@ -48,16 +48,16 @@
         width: 100%;
         justify-content: center;
         z-index: 2000;
-      }
+    }
 
-      .header-logo-img {
-        top: 10px;
-      }
+    .header-logo-img {
+        top: 12px;
+    }
 
-      /* Position the footer absolutely, at the bottom of the container. */
-      .footer {
+    /* Position the footer absolutely, at the bottom of the container. */
+    .footer {
         background: none;
-        font-size: 12px;
+        font-size: 10px;
         font-weight: bold;
         padding: 2px 12px 12px;
         text-transform: uppercase;
@@ -68,25 +68,24 @@
         left: 0;
         bottom: 0;
         right: 0;
-      }
-      .footer-logo {
-        min-width: 85px;
+    }
+    .footer-logo {
         /* background: gold; */
-        margin: 0;
-      }
-      .logo-img {
+        margin-right: 5px;
+        padding-right: 5px;
+        border-right: 2px solid #fff;
+    }
+    .logo-img {
         display: block;
-        margin-left: 15px;
-      }
-      .stretch {
+    }
+    .stretch {
         flex: 1;
-        text-align: center;
+        /* text-align: center; */
         /* background: #bada55; */
-      }
-      .button {
+    }
+    .button {
         text-transform: uppercase;
         text-align: center;
-        min-width: 60px;
         font-size: 9px;
         font-weight: normal;
         letter-spacing: 1px;
@@ -96,64 +95,65 @@
         background-color: #2b7ac8;
         border-radius: 5px;
         text-decoration: none;
-      }
-      .button:active {
+    }
+    .button:active {
         background-color: #92bbff;
-      }
-      /* Basic cards styling */
-      .cards-container {
+    }
+    /* Basic cards styling */
+    .cards-container {
         position: absolute;
         z-index: 1;
-        top: -20px;
+        top:   10px;
         left: 0;
         right: 0;
-      }
-      .card {
-        width: 100%;
+        display: flex;
+    }
+    .card {
+        min-width: 100%;
         overflow: hidden;
         position: relative;
-      }
+    }
 
-      .card-title {
+    .card-title {
         position: absolute;
         top: 82%;
-        left: 40%;
+        left: 42%;
         font-size: 10px;
         font-weight: bold;
         color: #000;
-      }
-      /* Change position of the expand button for the middle card
-      .card-gauges .expand-button {
+    }
+    /* Change position of the expand button for the middle card
+    .card-gauges .expand-button {
         left: 90px;
         top: 50px;
-      }
-      .learn-more a:active {
+    }
+    .learn-more a:active {
         background-color: #fff;
-      } */
+    } */
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <!-- ## Animations -->
     <!--
     The animations are implemented using [amp-animation](https://www.ampproject.org/docs/reference/components/amp-animation) which is an AMP component that uses [Web Animations API](https://www.w3.org/TR/web-animations/) to support both __time__ and __scroll__ based animations.
     -->
     <amp-animation id="adAnim" layout="nodisplay">
-      <script type="application/json">
+    <script type="application/json">
         {
-          "duration": "1s",
-          "fill": "both",
-          "direction": "alternate",
-          "animations": [
+        "duration": "1s",
+        "fill": "both",
+        "direction": "alternate",
+        "animations": [
             {
-              "selector": "#cardsContainer",
-              "keyframes": [
-                { "transform": "translateY(0)" },
-                { "transform": "translateY(-384px)"}
-              ]
+            "selector": "#cardsContainer",
+            "keyframes": [
+                { "transform": "translateX(0)" },
+                { "transform": "translateX(-600px)"}
+            ]
             }
-          ]
+        ]
         }
-      </script>
+    </script>
     </amp-animation>
     <!--
     **Slide cards opposite to scroll direction**:
@@ -168,75 +168,67 @@
     Monitors the position of an element within the viewport as a user scrolls, and dispatches enter, exit and scroll events that can be used with other components
     -->
     <amp-position-observer
-      intersection-ratios="1"
-      viewport-margins="10vh"
-      on="scroll:adAnim.seekTo(percent=event.percent)"
-      layout="nodisplay">
+    intersection-ratios="1"
+    viewport-margins="10vh"
+    on="scroll:adAnim.seekTo(percent=event.percent)"
+    layout="nodisplay">
     </amp-position-observer>
 
-      <!-- ## Banner markup -->
-     <div class="root-container">
-        <!-- <div class="confetti-background">
-            <amp-img src="https://res.cloudinary.com/dwqb3yhm3/image/upload/v1532985892/Parallax/confetti.png"
-                width="350"
-                height="250"
-                layout="fixed"
-                alt="Confetti"
-                class="confetti-img"></amp-img>
-        </div> -->
-       <div class="header-logo">
-          <amp-img src="https://res.cloudinary.com/dwqb3yhm3/image/upload/v1532985892/Parallax/summer-logo.png"
-          width="110"
-          height="72"
-          layout="fixed"
-          alt="Honda"
-          class="header-logo-img"></amp-img>
-       </div>
-      <div class="footer">
-        <div class="footer-logo">
-          <amp-img src="https://res.cloudinary.com/dwqb3yhm3/image/upload/v1532985891/Parallax/honda-logo.png"
-              width="64"
-              height="40"
-              layout="fixed"
-              alt="Honda"
-              class="logo-img"></amp-img>
-        </div>
-        <div class="stretch">Insert your Honda Dealer Ad Name</div>
-        <a href="https://www.autonationhondacostamesa.com/" target="_blank" class="button">
-          SEE OFFERS
-        </a>
-      </div>
-
-      <!-- ## Cards -->
-      <div class="cards-container" id="cardsContainer">
-        <div class="card card-seats">
-          <amp-img src="https://res.cloudinary.com/dwqb3yhm3/image/upload/v1532985892/Parallax/honda-accord.png"
-              width="350"
-              height="250"
-              layout="responsive"
-              alt="Accord"
-              class="a-carousel-img"></amp-img>
-          <div class="card-title">2018 Accord</div>
-        </div>
-        <div class="card card-gauges">
-          <amp-img src="https://res.cloudinary.com/dwqb3yhm3/image/upload/v1532985892/Parallax/honda-fit.png"
-              width="350"
-              height="250"
-              layout="responsive"
-              alt="Fit"
-              class="a-carousel-img"></amp-img>
-          <div class="card-title">2018 Fit</div>
-        </div>
-        <div class="card card-engine">
-          <amp-img src="https://res.cloudinary.com/dwqb3yhm3/image/upload/v1532985892/Parallax/honda-civic.png"
-              width="350"
-              height="250"
-              layout="responsive"
-              alt="Civic"
-              class="a-carousel-img"></amp-img>
-          <div class="card-title">2018 Civic</div>
-        </div>
-      </div>
+    <!-- ## Banner markup -->
+    <div class="root-container">
+    <div class="header-logo">
+        <amp-img src="https://res.cloudinary.com/dwqb3yhm3/image/upload/v1532985892/Parallax/summer-logo.png"
+        width="120"
+        height="80"
+        layout="fixed"
+        alt="Honda"
+        class="header-logo-img"></amp-img>
     </div>
-  </body>
+    <div class="footer">
+        <div class="footer-logo">
+        <amp-img src="https://res.cloudinary.com/dwqb3yhm3/image/upload/v1532985891/Parallax/honda-logo.png"
+            width="42"
+            height="26"
+            layout="fixed"
+            alt="Honda"
+            class="logo-img"></amp-img>
+        </div>
+        <div class="stretch">Autonation Honda Costa Mesa</div>
+        <a href="https://www.autonationhondacostamesa.com/" target="_blank" class="button">
+        SEE OFFERS
+        </a>
+    </div>
+
+    <!-- ## Cards -->
+    <div class="cards-container" id="cardsContainer">
+        <div class="card">
+        <amp-img src="https://res.cloudinary.com/dwqb3yhm3/image/upload/v1532985892/Parallax/honda-accord.png"
+            width="300"
+            height="215"
+            layout="flex-item"
+            alt="Accord"
+            class="a-carousel-img"></amp-img>
+        <div class="card-title">2018 Accord</div>
+        </div>
+        <div class="card">
+        <amp-img src="https://res.cloudinary.com/dwqb3yhm3/image/upload/v1532985892/Parallax/honda-fit.png"
+            width="300"
+            height="215"
+            layout="flex-item"
+            alt="Fit"
+            class="a-carousel-img"></amp-img>
+        <div class="card-title">2018 Fit</div>
+        </div>
+        <div class="card">
+        <amp-img src="https://res.cloudinary.com/dwqb3yhm3/image/upload/v1532985892/Parallax/honda-civic.png"
+            width="300"
+            height="215"
+            layout="flex-item"
+            alt="Civic"
+            class="a-carousel-img"></amp-img>
+        <div class="card-title">2018 Civic</div>
+        </div>
+    </div>
+    </div>
+</body>
 </html>
